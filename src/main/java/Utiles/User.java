@@ -6,8 +6,8 @@ public class User {
     private String password;
 
     public User(String fullName, String logIn, String password){
-        fullName = "Full Name";
-        logIn = "Log In";
+        fullName = "";
+        logIn = "";
         password = "Password";
     }
 
