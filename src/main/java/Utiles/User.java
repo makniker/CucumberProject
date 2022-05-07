@@ -8,7 +8,7 @@ public class User {
     public User(String fullName, String logIn, String password){
         fullName = "";
         logIn = "";
-        password = "Password";
+        password = "kljashvdkhasdhvlashv";
     }
 
     public String getFullName() {return fullName;}
