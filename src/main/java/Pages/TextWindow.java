@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class TextWindow extends BasePage
 {
     String xPathToWindow = "//*[@data-module = 'postingForm/mediaText']";
-    String xPathToText = "//*[@class = 'media-text_a']";
+    String xPathToText = "//*[@class = 'media-text_cnt']";
     String xPathToButton = "//*[@class = 'posting_submit button-pro']";
 
     public TextWindow(WebDriver driver)
