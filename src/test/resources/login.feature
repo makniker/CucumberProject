@@ -9,4 +9,4 @@ Feature: I want to test login in OK
       | "Nikita Yermakov" | "+79922228316" | "Nikita123" |
       | "Nadya" | "+79218824786" |  "raweryU78" |
       | "" | "" |  "" |
-      | "aksvjlsn" | "AOCOKNAONCOA[PN" |  "kanvlknalnlkalvalnvlkanlvknadlknvlkadnvk'ankvnal'knvlkanvknadkvnoanvonadonv" |
+      | "aks" | "AOCOKNAONCOA[PN" |  "kanvlknalnlkalvalnvlkanlvknadlknvlkadnvk'ankvnal'knvlkanvknadkvnoanvonadonv" |
