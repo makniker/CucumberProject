@@ -30,9 +30,9 @@ public class StepsForLogin extends TestBase {
         loginPage = new Pages.LoginPage(driver);
     }
 
-    @When("I login as {string} with password {string}")
-    public void iLoginAsWithPassword(String name, String password) {
-        testUser = new Utils.User("Никита Ермаков", name, password);
+    @When("I login as {string} with {string} and {string}")
+    public void iLoginAsNameWithLoginAndPassword(String name, String login, String password) {
+        testUser = new Utils.User(name, login, password);
         mainPage = loginPage.logIn(testUser);
     }
 
@@ -40,4 +40,5 @@ public class StepsForLogin extends TestBase {
     public void iHaveBeenSuccessfullyLogged() {
         Assertions.assertEquals(mainPage.getName(), testUser.getName());
     }
+
 }
