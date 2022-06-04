@@ -5,14 +5,12 @@ import Pages.MainPage;
 import Utils.User;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
-public class StepsDefinition extends TestBase {
+public class StepsForLogin extends TestBase {
     LoginPage loginPage;
     User testUser;
     MainPage mainPage;
@@ -23,13 +21,12 @@ public class StepsDefinition extends TestBase {
     }
 
     @After
-    public void teardown(Scenario scenario){
+    public void teardown(){
         finish();
     }
     
-    @Given("I go to login page")
-    public void iGoToLoginPage() {
-        driver.get("https://ok.ru");
+    @Given("I Open login page")
+    public void iOpenLoginPage() {
         loginPage = new Pages.LoginPage(driver);
     }
 
