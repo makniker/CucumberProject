@@ -53,7 +53,6 @@ public class SettingsPage {
         changeField(driver, CITY_LOCATOR, newCity);
         driver.findElement(By.xpath(CITY_INPUT_LOCATOR)).click();
         driver.findElement(By.xpath(FORM_LOCATOR)).click();
-
     }
 
     public void changeCurrentCity(String newCity){
