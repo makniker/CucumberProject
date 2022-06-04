@@ -1,24 +1,25 @@
 package Pages;
-
-import Utiles.User;
+import Utils.User;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+public class LoginPage extends BasePage{
+    public LoginPage(WebDriver driver)
+    {
+        super(driver);
+    }
 
-public class LoginPage extends DefaultPage {
-
-    WebDriver driver;
-    private final String LOGIN_LOCATOR = ".//input[@id='field_email']";
-    private final String PASSWORD_LOCATOR = ".//input[@id='field_password']";
-    private final String SIGN_IN_LOCATOR = ".//input[@class = 'button-pro __wide']";
-
-    public LoginPage() { this.driver = driver; }
-
-    public DefaultPage doLogin(User user) {
-
-        changeField(driver, LOGIN_LOCATOR, user.getLogIn());
-        changeField(driver, PASSWORD_LOCATOR, user.getPassword());
-        clickOnElement(driver, SIGN_IN_LOCATOR);
-
-        return new DefaultPage();
+    public MainPage logIn(User user)
+    {
+        String xPathToPassword = "//*[@id = 'field_password']";
+        String xPathToButton = "//*[@class = 'button-pro __wide']";
+        String xPathToLogin = "//*[@id = 'field_email']";
+        WebElement loginField = webDriver_.findElement(By.xpath(xPathToLogin));
+        loginField.sendKeys(user.getLogin());
+        WebElement passwordField = webDriver_.findElement(By.xpath(xPathToPassword));
+        passwordField.sendKeys(user.getPassword());
+        webDriver_.findElement(By.xpath(xPathToButton)).click();
+        return new MainPage(webDriver_);
     }
 }
