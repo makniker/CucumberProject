@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
     WebDriver driver;
 
-
     public void start() {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
