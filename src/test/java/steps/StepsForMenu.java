@@ -1,8 +1,7 @@
 package steps;
 
-import Pages.LoginPage;
 import Pages.MainPage;
-import Pages.TextWindow;
+import Pages.MenuWindow;
 import Utils.User;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -11,11 +10,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
-public class StepsForPost extends TestBase{
+import java.util.List;
+
+public class StepsForMenu extends TestBase{
     MainPage mainPage;
     User testUser;
-    String textForPost;
-    TextWindow textWindow;
 
     @Before
     public void initialisation(){
@@ -27,22 +26,19 @@ public class StepsForPost extends TestBase{
         finish();
     }
 
-    @Given("I log in on main page as {string} with {string} and {string}")
+    @Given("I log in and stay on main page as {string} with {string} and {string}")
     public void iLogInAndStayOnMainPage(String name, String login, String password) {
         testUser = new Utils.User(name, login, password);
         mainPage = new Pages.LoginPage(driver).logIn(testUser);
     }
 
-    @When("I post {string} on main page")
-    public void iPostOnMainPage(String text) {
-        textWindow = new TextWindow(driver);
-        mainPage.addTextWindow(textWindow)
-                .postSomething(text);
-        textForPost = text;
+    @When("I click on drop-down menu")
+    public void iClickOnDropMenu() {
+        mainPage.addMenuWindow(new MenuWindow(driver).dropDownMenu());
     }
 
-    @Then("It should appear on it")
-    public void itShouldAppearOnIt() {
-        Assertions.assertEquals(textForPost, textWindow.getText());
+    @Then("^should appear$")
+    public void itShouldAppearOnIt(List<String> arg) {
+        Assertions.assertTrue(mainPage.checkMenu(arg));
     }
 }

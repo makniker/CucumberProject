@@ -13,10 +13,8 @@ public class TestBase {
     public void start() {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
-        //options.setHeadless(true);
         driver = new FirefoxDriver(options);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         driver.get("https://ok.ru");
     }
 

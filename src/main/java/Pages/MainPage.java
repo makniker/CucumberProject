@@ -2,7 +2,8 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 
 public class MainPage extends BasePage{
@@ -10,13 +11,27 @@ public class MainPage extends BasePage{
     {
         super(driver);
     }
-    public TextWindow textWindow_;
-    private String xPathToUserTopic = "//*[@class = 'pf-head_itx_a']";
-    private String xPathToUserName = "//*[@class='tico ellip']";
+    private TextWindow textWindow_;
+    private MenuWindow menuWindow_;
+
+    private final String xPathToUserTopic = "//*[@class = 'pf-head_itx_a']";
+    private final String xPathToUserName = "//*[@class='tico ellip']";
+
     public MainPage addTextWindow(TextWindow textWindow)
     {
         textWindow_ = textWindow;
         return this;
+    }
+
+    public MainPage addMenuWindow(MenuWindow menuWindow)
+    {
+        menuWindow_ = menuWindow;
+        return this;
+    }
+
+    public boolean checkMenu(List<String> arg)
+    {
+        return menuWindow_.isAppear(arg);
     }
 
     public MainPage postSomething(String text)
