@@ -1,10 +1,20 @@
 package Pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class SettingsPage{
-
     WebDriver driver;
+
+    String FORM_LOCATOR = ".//form[contains(@action, 'settings')]";
+    private final String CLOSE_ICO_LOCATOR = ".//a[contains(@class, 'close_ico')]";
+
+    String NATIVE_CITY_INPUT_LOCATOR = ".//div[@id='cityBSugg_InputContainer']";
+    String NATIVE_CITY_LOCATOR = ".//input[@id='field_cityBSugg_SearchInput']";
+    String CITY_VALUE = " and @value=";
+
+    String PERSONAL_DATA_EDIT = ".//div[text()='Личные данные']";
+    String CONFIRM_BUTTON = ".//input[contains(@class, 'yes')]";
 
     public SettingsPage(WebDriver driver) {
         this.driver = driver;
@@ -23,25 +33,31 @@ public class SettingsPage{
         }
     }
 
+    public String substructLocator(String LOCATOR){
+        return LOCATOR.substring(0, LOCATOR.length()-1);
+    }
+
+    public boolean isElementHere(WebDriver driver, String XPATH){
+        try{
+            driver.findElement(By.xpath(XPATH));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public void changeField(WebDriver driver, String FIELD_LOCATOR, String newValue) {
         driver.findElement(By.xpath(FIELD_LOCATOR)).clear();
         driver.findElement(By.xpath(FIELD_LOCATOR)).sendKeys(newValue);
     }
 
-    String FORM_LOCATOR = ".//form[contains(@action, 'settings')]";
-
-    String CURRENT_CITY_LOCATOR = ".//input[@id='field_citySugg_SearchInput']";
-    String CURRENT_CITY_INPUT_LOCATOR = ".//div[@id='citySugg_InputContainer']";
-
-    String NATIVE_CITY_INPUT_LOCATOR = ".//div[@id='cityBSugg_InputContainer']";
-    String NATIVE_CITY_LOCATOR = ".//input[@id='field_cityBSugg_SearchInput']";
-    String CITY_VALUE = " and @value=";
-
-    String PERSONAL_DATA_EDIT = ".//div[text()='Личные данные']";
-    String CONFIRM_BUTTON = ".//input[contains(@class, 'yes')]";
-
     public void openChangingPersonalDataSpace(){
         clickOnElement(driver, PERSONAL_DATA_EDIT);
+    }
+
+    public SettingsPage closeChangingPersonalDataSpace(){
+        clickOnElement(driver, CLOSE_ICO_LOCATOR);
+        return new SettingsPage(driver);
     }
 
     public SettingsPage saveChanges(){
@@ -55,11 +71,25 @@ public class SettingsPage{
         driver.findElement(By.xpath(FORM_LOCATOR)).click();
     }
 
-    public void changeCurrentCity(String newCity){
-        changeCity(newCity, CURRENT_CITY_LOCATOR, CURRENT_CITY_INPUT_LOCATOR);
-    }
-
     public void changeNativeCity(String newCity){
         changeCity(newCity, NATIVE_CITY_LOCATOR, NATIVE_CITY_INPUT_LOCATOR);
+    }
+
+    public void checkCorrectNativeCity(String city){
+        checkFieldChanged(driver, substructLocator(NATIVE_CITY_LOCATOR) + CITY_VALUE + "'" + city + "'" + "]", "Native City: " );
+    }
+
+    public void checkIncorrectNativeCity(String city){
+        checkFieldNotChanged(driver, substructLocator(NATIVE_CITY_LOCATOR) + CITY_VALUE + "'" + city + "'" + "]", "Native City: " );
+    }
+
+    private void checkFieldNotChanged(WebDriver driver, String XPATH, String message) {
+        Assert.assertFalse(message + "incorrect", isElementHere(driver, XPATH));
+        System.out.println(message + "correct");
+    }
+
+    private void checkFieldChanged(WebDriver driver, String XPATH, String message) {
+        Assert.assertTrue(message + "incorrect", isElementHere(driver, XPATH));
+        System.out.println(message + "correct");
     }
 }
