@@ -1,5 +1,6 @@
 package Pages;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -36,19 +37,14 @@ public class MainPage extends BasePage{
 
     public MainPage postSomething(String text)
     {
-        if (isElementHere(xPathToUserTopic))
-        {
-            clickOnElement(xPathToUserTopic);
-            textWindow_.insertText(text).post();
-        }
+        clickOnElement(xPathToUserTopic);
+        textWindow_.insertText(text).post();
         return this;
     }
 
     public String getName()
     {
-        if (isElementHere(xPathToUserName)) {
-            return webDriver_.findElement(By.xpath(xPathToUserName)).getText();
-        }
-        return " ";
+        Assertions.assertTrue(isElementHere(xPathToUserName));
+        return webDriver_.findElement(By.xpath(xPathToUserName)).getText();
     }
 }

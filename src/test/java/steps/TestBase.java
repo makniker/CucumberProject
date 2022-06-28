@@ -14,7 +14,7 @@ public class TestBase {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
         driver = new FirefoxDriver(options);
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.get("https://ok.ru");
     }
 

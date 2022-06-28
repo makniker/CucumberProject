@@ -1,4 +1,5 @@
 package Pages;
+
 import Utils.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,10 +21,7 @@ public class LoginPage extends BasePage{
         loginField.sendKeys(user.getLogin());
         WebElement passwordField = webDriver_.findElement(By.xpath(xPathToPassword));
         passwordField.sendKeys(user.getPassword());
-        if (isElementHere(xPathToButton))
-        {
-            clickOnElement(xPathToButton);
-        }
+        clickOnElement(xPathToButton);
         return new MainPage(webDriver_);
     }
 }

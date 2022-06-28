@@ -1,5 +1,6 @@
 package Pages;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,24 +18,20 @@ public class TextWindow extends BasePage
 
     public TextWindow insertText(String text)
     {
-        if (isElementHere(xPathToWindow))
-        {
-            webDriver_.findElement(By.xpath(xPathToWindow)).sendKeys(text);
-        }
+        Assertions.assertTrue(isElementHere(xPathToWindow));
+        webDriver_.findElement(By.xpath(xPathToWindow)).sendKeys(text);
         return this;
     }
 
     public String getText()
     {
+        Assertions.assertTrue(isElementHere(xPathToText));
         return webDriver_.findElement(By.xpath(xPathToText)).getText();
     }
 
     public TextWindow post()
     {
-        if (isElementHere(xPathToButton))
-        {
-            clickOnElement(xPathToButton);
-        }
+        clickOnElement(xPathToButton);
         return this;
     }
 }

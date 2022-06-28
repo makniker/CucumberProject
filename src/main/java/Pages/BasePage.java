@@ -1,5 +1,6 @@
 package Pages;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ public class BasePage {
     }
 
     public void clickOnElement(String XPATH){
+        Assertions.assertTrue(isElementHere(XPATH));
         webDriver_.findElement(By.xpath(XPATH)).click();
     }
 
